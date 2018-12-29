@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{1A029075-4C79-4485-9D30-52EF7271AC49}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="iCloudConsoleDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\test\iCLoudTests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="iCloudConsoleDemo">
+        <MSBuild Projects="iCloudConsoleDemo.dproj"/>
+    </Target>
+    <Target Name="iCloudConsoleDemo:Clean">
+        <MSBuild Projects="iCloudConsoleDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="iCloudConsoleDemo:Make">
+        <MSBuild Projects="iCloudConsoleDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="iCLoudTests">
+        <MSBuild Projects="..\test\iCLoudTests.dproj"/>
+    </Target>
+    <Target Name="iCLoudTests:Clean">
+        <MSBuild Projects="..\test\iCLoudTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="iCLoudTests:Make">
+        <MSBuild Projects="..\test\iCLoudTests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="iCloudConsoleDemo;iCLoudTests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="iCloudConsoleDemo:Clean;iCLoudTests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="iCloudConsoleDemo:Make;iCLoudTests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
